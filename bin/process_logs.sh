@@ -5,12 +5,17 @@ Tarchives=( "$@" )
 mkdir SCRATCH 
 
 headDir=$PWD
-echo ./log_files/${Tarchives[@]}
+echo ${Tarchives[@]}
 echo ${Tarchives[0]}
 echo ${Tarchives[1]}
-for f in ./log_files/${Tarchives[@]}; do
+cd log_files
+echo $PWD
+for f in ${Tarchives[@]}; do
 	echo $f
-	tar -xzf $f -C SCRATCH/${f_%*}
+	mkdir ../SCRATCH/${f%_*}
+	tar -xzf $f -C ../SCRATCH/${f%_*}
+	
+	
 done
 
 
